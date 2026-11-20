@@ -85,6 +85,8 @@ class EventController extends Controller
 
     public function update(UpdateEventRequest $request, Event $event): EventResource
     {
+        $this->authorize('update', $event);
+
         $data = $request->validated();
 
         if (isset($data['capacity'])) {
@@ -104,6 +106,8 @@ class EventController extends Controller
 
     public function destroy(Event $event): JsonResponse
     {
+        $this->authorize('delete', $event);
+
         if ($event->registrations()->exists()) {
             throw BusinessRuleException::eventHasRegistrations();
         }

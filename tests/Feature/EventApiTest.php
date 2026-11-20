@@ -139,6 +139,14 @@ class EventApiTest extends TestCase
             ->assertForbidden();
     }
 
+    public function test_another_organizer_cannot_delete_the_event(): void
+    {
+        $event = Event::factory()->create();
+        Sanctum::actingAs($this->organizer());
+
+        $this->deleteJson("/api/events/{$event->id}")->assertForbidden();
+    }
+
     public function test_capacity_cannot_be_lower_than_confirmed_registrations(): void
     {
         $organizer = $this->organizer();

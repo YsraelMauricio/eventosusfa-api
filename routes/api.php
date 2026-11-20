@@ -33,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/events/{event}/registrations', [RegistrationController::class, 'store']);
     Route::get('/me/registrations', [RegistrationController::class, 'mine']);
     Route::delete('/registrations/{registration}', [RegistrationController::class, 'destroy']);
+    Route::get('/events/{event}/stats', [RegistrationController::class, 'stats']);
+    Route::get('/events/{event}/registrations.csv', [RegistrationController::class, 'exportCsv']);
     Route::get('/events/{event}/registrations', [RegistrationController::class, 'indexForEvent']);
     Route::post('/events/{event}/check-in', [RegistrationController::class, 'checkIn']);
 });

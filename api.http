@@ -1,0 +1,10 @@
+### EventosUSFA API · ejemplos de llamadas
+### Extensión recomendada: REST Client (VS Code) o el cliente HTTP de tu editor.
+
+@baseUrl = http://localhost:8000/api
+
+### Estado del servicio
+GET {{baseUrl}}/health
+
+### Listado de categorías
+GET {{baseUrl}}/categories

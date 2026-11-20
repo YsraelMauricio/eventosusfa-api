@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\HealthController;
+use App\Http\Controllers\Api\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 // Rutas públicas
@@ -28,4 +29,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::put('/events/{event}', [EventController::class, 'update']);
     Route::delete('/events/{event}', [EventController::class, 'destroy']);
+
+    Route::post('/events/{event}/registrations', [RegistrationController::class, 'store']);
+    Route::get('/me/registrations', [RegistrationController::class, 'mine']);
+    Route::delete('/registrations/{registration}', [RegistrationController::class, 'destroy']);
+    Route::get('/events/{event}/registrations', [RegistrationController::class, 'indexForEvent']);
+    Route::post('/events/{event}/check-in', [RegistrationController::class, 'checkIn']);
 });
